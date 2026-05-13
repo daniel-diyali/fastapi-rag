@@ -1,0 +1,6 @@
+# I'm adding dependencies phase by phase instead of pinning everything upfront.
+# Each commit that introduces a new piece of the pipeline also adds the
+# package(s) it needs. That way the commit log doubles as a tour of what
+# each stage of the system depends on.
+#
+# Current phase: 0 (setup). No runtime deps yet.

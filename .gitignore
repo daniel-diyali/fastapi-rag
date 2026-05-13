@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Secrets and env files
+.env
+.env.local
+*.key
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+# chroma_db/ holds the persisted vector store. Regenerable from data + code,
+# and will get big once we embed all the docs, so it doesn't belong in git.
+chroma_db/
+
+# data/ holds the cloned FastAPI repo. The ingest script fetches it on demand,
+# so we don't commit a copy of someone else's docs into our repo.
+data/
+
+# logs and one-off scratch
+*.log
+scratch/

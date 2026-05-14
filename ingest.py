@@ -10,6 +10,8 @@ of the pipeline.
 import subprocess
 import sys
 from pathlib import Path
+import json
+from chunker import chunk_corpus
 
 # Pinning the repo URL up here so it's obvious where we're pulling from.
 # I'm using the official FastAPI repo on GitHub. If FastAPI ever moves
@@ -20,6 +22,10 @@ REPO_URL = "https://github.com/fastapi/fastapi.git"
 # because the docs aren't mine to commit, and re-fetching is cheap.
 DATA_DIR = Path(__file__).parent / "data"
 REPO_DIR = DATA_DIR / "fastapi"
+
+# After fetching, the chunker will write here. This is a JSONL file where
+# each line is a JSON object representing one chunk, with text and metadata.
+CHUNKS_PATH = DATA_DIR / "chunks.jsonl"
 
 # The English docs live at this path inside the repo. FastAPI ships
 # translations too, but I'm indexing only English for now so my
@@ -67,8 +73,23 @@ def fetch_docs() -> Path:
     return docs_path
 
 
+def dump_chunks(docs_path: Path, output_path: Path) -> int:
+    """
+    Run the chunker over the docs and write each chunk to a JSONL file.
+    Returns the number of chunks written so the caller can log it.
+    """
+    count = 0
+    with output_path.open("w", encoding="utf-8") as f:
+        for chunk in chunk_corpus(docs_path):
+            f.write(json.dumps(chunk.to_dict(), ensure_ascii=False) + "\n")
+            count += 1
+    return count
+
+
 def main() -> None:
-    fetch_docs()
+    docs_path = fetch_docs()
+    n = dump_chunks(docs_path, CHUNKS_PATH)
+    print(f"Wrote {n} chunks to {CHUNKS_PATH}")
 
 
 if __name__ == "__main__":

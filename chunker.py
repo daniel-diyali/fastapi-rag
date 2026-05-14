@@ -1,3 +1,7 @@
+# TODO: H1 line stays in the intro chunk body, doubling up the doc title
+# with the prepended prefix. Probably fine but might inflate weight in
+# the embedding. Revisit if evals show it.
+
 """
 Markdown chunker for the FastAPI RAG project.
 

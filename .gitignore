@@ -43,3 +43,5 @@ data/
 # logs and one-off scratch
 *.log
 scratch/
+
+CLAUDE.md

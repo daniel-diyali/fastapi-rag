@@ -33,7 +33,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-An Anthropic API key will be needed once we hit Phase 4 (generation). Instructions for the `.env` file go here when we get there.
+An Anthropic API key will be needed once I hit Phase 4 (generation). Instructions for the `.env` file go here when I get there.
 
 ## Learning journal
 

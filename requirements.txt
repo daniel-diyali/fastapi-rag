@@ -4,3 +4,6 @@
 # each stage of the system depends on.
 #
 # Current phase: 0 (setup). No runtime deps yet.
+
+sentence-transformers==3.0.1
+chromadb==0.5.5

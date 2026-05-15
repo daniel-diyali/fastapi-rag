@@ -60,7 +60,11 @@ def build_collection(
         client.delete_collection(name=COLLECTION_NAME)
     except ValueError:
         pass
-    collection = client.create_collection(name=COLLECTION_NAME)
+    
+    collection = client.create_collection(
+        name=COLLECTION_NAME,
+        metadata={"hnsw:space": "cosine"},
+    )
 
     # pulling parallel lists out of `chunks` so I can batch-encode all documents at once.
     documents = []
